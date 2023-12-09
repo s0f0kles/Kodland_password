@@ -1,0 +1,99 @@
+import random
+import time
+#Список паролей
+password = {}
+
+#Функции
+def password_list():
+    print('*' * 15, 'Your Passwords', '*' * 18)
+    print(password)
+
+def add_password(password):
+    key =input('Name the purpose of the password: ')
+    value = input('The password: ')
+    password[key] = value
+    print('*' * 16, 'Password Added', '*' * 17)
+
+    
+def remove_password(password):
+    time.sleep(1)
+    print('Which password you want to delete?')
+    key = input('(name or purpose of the password)')
+    if key in password:
+        del password[key]
+        time.sleep(1)
+        print('*' * 15, 'Password Removed', '*' * 16)
+    else:
+        time.sleep(1)
+        print('*' * 15, 'Password Not Found', '*' * 14)
+    
+    
+def make_new_password(password):
+    characters = "+-/*!&$#?=@abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+    length = int(input('Enter the length of the password: '))
+    random_password = ''.join(random.choice(characters) for _ in range(length))
+    key = input('Name the new password: ')
+    time.sleep(1)
+    password[key] = str(random_password)
+    time.sleep(1)
+    print('*' * 15, 'New Password Generated', '*' * 10)
+
+
+def sing_in():
+    personal_data = {
+        'Name': input('Name: '),
+        'Surname': input('Surname: '),
+        'Username': input('Your username: '),
+        'Password': input('Password: ')}
+    return personal_data
+
+def security(user_data, choice):
+    time.sleep(1)
+    inshow= input('Write your username password: ')
+    time.sleep(1)
+    print('*' * 49)
+    if user_data['Password'] == inshow:
+        if choice == 'show':
+            password_list()
+        elif choice == 'add':
+            add_password(password)
+        elif choice == 'remove':
+            remove_password(password)
+        elif choice == 'make':
+            make_new_password(password)
+    else:
+        time.sleep(1)
+        print('*' * 9, 'INCORRECT Password, Try Again', '*' * 9)
+        
+
+#Приветствие
+print('*' * 15, 'Welcome to MyPass',  '*' * 15)
+time.sleep(4)
+print('*' * 19, 'Sign in: ',  '*' * 19)
+time.sleep(2)
+user_data = sing_in()
+print('*' * 49)
+time.sleep(2)
+print('Welcome', user_data['Name'], user_data['Surname'], '!', '٩(◕‿◕)۶')
+while True:
+    time.sleep(1)
+    print('*' * 49)
+    time.sleep(2)
+    choice = input('Choose: show/add/remove/make password: ')
+    while True:
+        if choice == 'show':
+            security(user_data, choice)
+            break
+        elif choice == 'add':
+            security(user_data, choice)
+            break
+        elif choice == 'remove':
+            security(user_data, choice)
+            break
+        elif choice == 'make':
+            security(user_data, choice)
+            break
+        else:
+            time.sleep(1)
+            print('*' * 8, 'We cannot understand your choice', '*' * 7)
+            break
